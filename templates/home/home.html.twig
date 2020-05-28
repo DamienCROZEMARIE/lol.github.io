@@ -1,0 +1,14 @@
+ {% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="text-center mt-4">
+    <form class="form-signin text-center center-block" action= "{{ path('history',{name :-1}) }}">
+        <h1 class="h3 mb-3 font-weight-normal">Enter Summoner Name</h1>
+        <input class="form-control mb-3 w-50 mx-auto" type="search" placeholder="Summoner Name" aria-label="Search" name="name">
+        <button class="btn btn-lg btn-primary btn-block w-25 mx-auto" type="submit">Search</button>
+    </form>
+</div>
+{% endblock %}
+{% block javascripts %}
+{% endblock %} 

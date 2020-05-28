@@ -1,0 +1,17 @@
+ {% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="example-wrapper">
+
+    <h1> Rotation des champions gratuit</h1>
+
+    {% for champion in tableNamefreeChampions %}
+        <p> <a href="{{ path('show', { id:  champion[1] }) }}" > {{ champion[0] }} </a></p>
+    {% endfor %}
+<div id="chart_div"></div>
+
+</div>  
+{% endblock %}
+{% block javascripts %}
+{% endblock %} 

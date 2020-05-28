@@ -1,0 +1,380 @@
+{% extends "base.html.twig" %}
+{% block javascript %}        
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+            // Load the Visualization API and the corechart package.
+        google.charts.load('current', {'packages':['corechart']});
+
+            // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChartPlayersCS);
+        google.charts.setOnLoadCallback(drawChartPlayerCS);
+        google.charts.setOnLoadCallback(drawChartPlayersGold);
+        google.charts.setOnLoadCallback(drawChartParticipantGold);
+        {# google.charts.setOnLoadCallback(drawChartPlayersLevel);
+        google.charts.setOnLoadCallback(drawChartParticipantLevel); #}
+
+            // Callback that creates and populates a data table,
+            // instantiates the pie chart, passes in the data and
+            // draws it.
+        function drawChartPlayersCS() {
+            var playersCS = '{{ playersCS|json_encode|raw }}';
+            console.log(playersCS);
+            var data = google.visualization.arrayToDataTable(JSON.parse(playersCS));
+
+            var options = {
+                title: 'CSing',
+                titleTextStyle: {
+                        color: 'white', 
+                    },
+                backgroundColor: '#414952',
+                chartArea: {
+                    width:'80%',
+                    height:'80%',
+
+                },
+                hAxis: {
+                    title: 'Min',
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'black',
+                        interval: [1,5],
+                    }
+                },
+                vAxis: {
+                    title: 'CS',
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    minValue: 0,
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'grey',
+                    },
+                    gridlines: {
+                        color: 'black',
+                    }
+                },
+                legend :{
+                    position: 'in',
+                    textStyle: {
+                        fontSize: 10,
+                        color: 'white',
+                    }
+                },
+                crosshair: {
+                    trigger: 'both' 
+                },
+                selectionMode : 'multiple',
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        } 
+
+        function drawChartPlayerCS() {
+            var playerCS = '{{ participantCS|json_encode|raw }}';
+            console.log(playerCS);
+            var data = google.visualization.arrayToDataTable(JSON.parse(playerCS));
+
+            var options = {
+                title: 'CSing of',
+                titleTextStyle: {
+                        color: 'white', 
+                    },
+                backgroundColor: '#414952',
+                chartArea: {
+                    width:'80%',
+                    height:'80%',
+
+                },
+                hAxis: {
+                    title: 'Min',
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'black',
+                        interval: [1,5],
+                    }
+                },
+                vAxis: {
+                    title: 'CS',
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    minValue: 0,
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'grey',
+                    },
+                    gridlines: {
+                        color: 'black',
+                    }
+                },
+                legend :{
+                    position: 'in',
+                    textStyle: {
+                        fontSize: 10,
+                        color: 'white',
+                    }
+                },
+                crosshair: {
+                    trigger: 'both' 
+                },
+                selectionMode : 'multiple',
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('chartCS_div'));
+            chart.draw(data, options);
+        }
+
+        function drawChartPlayersGold() {
+            var playersGold = '{{ playersTotalGols|json_encode|raw }}';
+            var data = google.visualization.arrayToDataTable(JSON.parse(playersGold));
+
+            var options = {
+                title: 'Gold',
+                titleTextStyle: {
+                        color: 'white', 
+                    },
+                backgroundColor: '#414952',
+                chartArea: {
+                    width:'80%',
+                    height:'80%',
+
+                },
+                hAxis: {
+                    title: 'Min',
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'black',
+                        interval: [1,5],
+                    }
+                },
+                vAxis: {
+                    title: 'gold',
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    minValue: 0,
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'grey',
+                    },
+                    gridlines: {
+                        color: 'black',
+                    }
+                },
+                legend :{
+                    position: 'in',
+                    textStyle: {
+                        fontSize: 10,
+                        color: 'white',
+                    }
+                },
+                crosshair: {
+                    trigger: 'both' 
+                },
+                selectionMode : 'multiple',
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('chartTotalGold_div'));
+            chart.draw(data, options);
+        }
+
+        function drawChartParticipantGold() {
+            var partitcipantGold = '{{ participantGold|json_encode|raw }}';
+            var data = google.visualization.arrayToDataTable(JSON.parse(partitcipantGold));
+
+           var options = {
+                title: 'Gold of',
+                titleTextStyle: {
+                        color: 'white', 
+                    },
+                backgroundColor: '#414952',
+                chartArea: {
+                    width:'80%',
+                    height:'80%',
+
+                },
+                hAxis: {
+                    title: 'Min',
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'black',
+                        interval: [1,5],
+                    }
+                },
+                vAxis: {
+                    title: 'Gold',
+                    titleTextStyle: {
+                        color: 'white', 
+                    },
+                    minValue: 0,
+                    textStyle: {
+                        color: 'white', 
+                    },
+                    gridlines: {
+                        color: 'grey',
+                    },
+                    gridlines: {
+                        color: 'black',
+                    }
+                },
+                legend :{
+                    position: 'in',
+                    textStyle: {
+                        fontSize: 10,
+                        color: 'white',
+                    }
+                },
+                crosshair: {
+                    trigger: 'both' 
+                },
+                selectionMode : 'multiple',
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('chartParticipantGold_div'));
+            chart.draw(data, options);
+        }  
+
+        function drawChartPlayersLevel() {
+            var playersLevel = '{{ playersLevel|json_encode|raw }}';
+            var data = google.visualization.arrayToDataTable(JSON.parse(playersLevel));
+
+            var options = {
+                title: 'Total Level',
+                hAxis: {title: 'Level',  
+                        titleTextStyle: {
+                            color: '#333'
+                            }
+                        },
+                vAxis: {
+                    minValue: 0
+                },
+                selectionMode : 'multiple',
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('chartPlayersLevel_div'));
+            chart.draw(data, options);
+        }
+
+        function drawChartParticipantLevel() {
+            var participantLevel = '{{ participantLevel|json_encode|raw }}';
+            var data = google.visualization.arrayToDataTable(JSON.parse(participantLevel));
+
+            var options = {
+                title: 'Total Level',
+                hAxis: {title: 'Level',  
+                        titleTextStyle: {
+                            color: '#333'
+                            }
+                        },
+                vAxis: {
+                    minValue: 0
+                },
+                selectionMode : 'multiple',
+            };
+            var chart = new google.visualization.AreaChart(document.getElementById('chartParticipantLevel_div'));
+            chart.draw(data, options);
+        }
+
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="container mt-1 mw-100 centered bg-dark text-white p-3">
+        <div class="row">
+            <div class="col-6">
+                <h2 class = "text-primary"> Blue Team </h2>
+                {% if (winner["winner"] == 100) %} <h3 class="text-success"> Winner </h3> {% else %}<h3 class="text-danger"> Loser </h3> {% endif %}
+                    {% for player in playersMatch %}
+                        {% if player['teamId'] == 100 %}
+                            <a href="{{path('match',{ id:  matchId,'p': player['participantId']})}}" class = "text-white" > 
+                                <div class="row mt-3">
+                                    <div class="col-3">
+                                        <h4>{{ player['summonerName'] }}</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <img src = "http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/champion/{{ player['championName'] }}.png"  class="w-100"/>
+                                    </div>
+                                    <div class="col-2">
+                                        <h4> {{ player['kills'] }}/{{ player['deaths'] }}/{{ player['assists'] }}</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        {% for item in player['items'] %}
+                                            {% if item != 0 %}
+                                                <img src = "http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/item/{{item}}.png" width="50"/>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    
+                                </div>
+                            {# </a> #}
+                        {% endif %}
+                    {% endfor %}
+            </div>
+            <div class="col-6">
+                <h2 class="text-danger"> Red Team </h2>
+                {% if (winner["winner"] == 200) %} <h3 class="text-success"> Winner </h3> {% else %}<h3 class="text-danger"> Loser </h3> {% endif %}
+                <ul>
+                    {% for player in playersMatch %}
+                        {% if player['teamId'] == 200 %}
+                            <a href="{{path('match',{ id:  matchId,'p': player['participantId'] })}}" class = "text-white"> 
+                                <div class="row mt-3">
+                                    <div class="col-3" >
+                                        <h4>{{ player['summonerName'] }}</h4>
+                                    </div>
+                                    <div class="col-1">
+                                        <img src = "http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/champion/{{ player['championName'] }}.png" class="w-100"/>
+                                    </div>
+                                    <div class="col-2">
+                                        <h4> {{ player['kills'] }}/{{ player['deaths'] }}/{{ player['assists'] }}</h4>
+                                    </div>
+                                    <div class="col-6">
+                                        {% for item in player['items'] %}
+                                            {% if item != 0 %}
+                                                <img src = "http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/item/{{ item }}.png" width = '50'/>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class='row'>
+            <div id="chart_div" class='col-6' style="height: 500px;"></div>
+            <div id="chartCS_div" class='col-6' style="height: 500px;"></div>
+        </div>
+        <div class='row'>
+            <div id="chartTotalGold_div" class='col-6' style="height: 500px;"></div>
+            <div id="chartParticipantGold_div" class='col-6' style="height: 500px;"></div>
+        </div>
+         {# <div class='row'>
+            <div id="chartPlayersLevel_div" class='col-6' style="height: 500px;"></div>
+            <div id="chartParticipantLevel_div" class='col-6' style="height: 500px;"></div>
+        </div> #}
+    </div>
+{% endblock %}

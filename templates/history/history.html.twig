@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container m-1 mw-100 centered " style="width: 99%;">
+        <div class='jumbotron'>
+            <div class='d-flex align-middle'>
+                <img class='mr-2' width= '150' src = 'http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/profileicon/{{profileiconid}}.png' />
+                <div>
+                    <h3> {{ name }}</h1>
+                    <h4> Level {{ summonerLevel }}</p>
+                </div>
+            </div>
+        </div>
+        {% for match in playerHistory %}
+        <a href="{{ path('match', { id:  match['matchId'], p: 1 }) }}" class = "text-white"> 
+            <div class="row rounded-lg bg-dark border-bottom d-flex align-items-center">
+                    <div class="col-2 p-4">
+                        {# <h3>{{ match['championName'] }}</h3> #}
+                        <img src = " http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/champion/{{ match['championName'] }}.png" class = ""/>
+                    </div>
+                    <div class="col-2">
+                        <h4 class = "{% if (match["win"] == "Win") %} text-success"> WINNER </h4> {% else %}  text-danger"> LOSER</h4>{% endif %} 
+                    </div>
+                    <div class="col-2">
+                        <h4>{{ match['kills'] }}/ {{ match['deaths'] }} / {{ match['assists'] }}</h4>
+                    </div>
+                    <div class="col-6">
+                    {% for item in match['items'] %}
+                        {% if item != 0 %}
+                            <img src = "http://ddragon.leagueoflegends.com/cdn/{{ version }}/img/item/{{item}}.png" width="64px" height="64px"/>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+{% endblock %}
+
