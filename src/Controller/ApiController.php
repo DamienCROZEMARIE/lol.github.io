@@ -13,7 +13,7 @@ class ApiController extends AbstractController
 {
 
 
-    private $key = "RGAPI-4de7aefa-38e6-4cec-b9a8-47ebe21e18e2";
+    private $key = "RGAPI-57b7242d-a109-4a7d-aa80-d896f4c19510";
     public $version = "10.9.1";
 
     public function __construct(HttpClientInterface $httpClient)
